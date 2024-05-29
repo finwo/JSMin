@@ -61,7 +61,7 @@ jobs:
         run: |
           echo "/c/msys64/mingw64/bin" >> $GITHUB_PATH
       - if: ${{ matrix.arch != 'none' }}
-        uses: uraimo/run-on-arch-actions@v2
+        uses: uraimo/run-on-arch-action@v2
         name: Build arch
         with:
           arch: ${{ matrix.arch }}
