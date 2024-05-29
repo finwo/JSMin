@@ -24,7 +24,7 @@ jobs:
           echo "/c/msys64/mingw64/bin" >> $GITHUB_PATH
       - name: Build
         shell: bash
-        run: gcc jsmin.c -o ${{ matrix.bin }}
+        run: ${{ matrix.cc }} jsmin.c -o ${{ matrix.bin }}
       - name: Upload artifacts
         uses: svenstaro/upload-release-action@v2
         with:
@@ -71,14 +71,14 @@ jobs:
             apt-get update -yq
             apt-get install -yq build-essential
           run: |
-            gcc jsmin.c -o ${{ matrix.bin }}
+            ${{ matrix.cc }} jsmin.c -o ${{ matrix.bin }}
       - if: ${{ matrix.arch == 'none' }}
         name: Build native
         shell: bash
         run: |
           sudo apt-get update -yq
           sudo apt-get install -yq build-essential
-          gcc jsmin.c -o ${{ matrix.bin }}
+          ${{ matrix.cc }} jsmin.c -o ${{ matrix.bin }}
       - name: Upload artifacts
         uses: svenstaro/upload-release-action@v2
         with:
